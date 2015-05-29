@@ -1,35 +1,37 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "OpenShift-Twilio",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "OpenShift Twilio",
   "keywords": [
     "OpenShift",
     "Node.js",
     "application",
-    "openshift"
+    "openshift",
+    "twilio"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+    "name": "Luke Hedger",
+    "email": "luke.hedger@gmail.com",
+    "url": "http://www.level-out.com/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "http://twilio-levelout.rhcloud.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/openshift/origin-server"
   },
-
   "engines": {
-    "node": ">= 0.6.0",
+    "node": ">= 0.10.0",
     "npm": ">= 1.0.0"
   },
-
   "dependencies": {
-    "express": "~3.4.4"
+    "diet": "^0.9.3",
+    "twilio": "^2.2.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],
-
   "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
   "main": "server.js"
 }
