@@ -6,6 +6,8 @@ var express = require('express'),
     twilio = require('twilio'),
     client = twilio();
 
+var config = require('./config');
+
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
@@ -22,13 +24,16 @@ app.post('/message', function (req, res) {
 
     var resp = new twilio.TwimlResponse();
 
-    // TODO - dynamic message based on clue #
-    console.log("body:", req.body);
-    // store clues in config.json file clues: { 1: { hint: "this is a hint" } }
-    // get clue number from text body eg. CLUE 1
-    // then get config.clues[1].hint and resp.message(hint);
-    // simple... ?
-    resp.message('Thanks for subscribing!');
+    var body = req.body.Body;
+    console.log("body:", body);
+
+    var clue = body.match(/clue (.*)/i)[1];
+    console.log("clue:", clue);
+
+    var hint = config.hints[clue];
+    console.log("hint:", hint);
+
+    resp.message('Hint ' + clue + ':', hint);
 
     res.set('Content-Type', 'text/xml');
 
