@@ -34,10 +34,10 @@ var server = require('diet'),
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-app.listen("http://" + server_ip_address + ":" + server_port);
-
 app.get('/', function ($) {
-  $.end('Hello World!');
+    $.end('Hello World!');
 });
+
+app.listen("http://" + server_ip_address + ":" + server_port);
 
 console.log( "Listening on " + server_ip_address + ", server_port " + server_port );
