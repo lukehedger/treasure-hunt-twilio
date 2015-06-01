@@ -1,18 +1,43 @@
 #!/bin/env node
-// var server = require('diet'),
-//     app = server(),
-//     twilio = require('twilio'),
-//     client = twilio();
-//
-// var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-// var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8000
-//
-// app.listen("http://" + server_ip_address + ":" + server_port)
-//
-// app.get('/', function($){
-//     $.end('Hello World!')
-// });
-//
+var express = require('express');
+var app = express(),
+    twilio = require('twilio'),
+    client = twilio();
+
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+});
+
+app.post('/message', function ($) {
+
+    // TODO - how can we get text body?
+    console.log($.body, $.query, $.params);
+
+    var resp = new twilio.TwimlResponse();
+
+    // TODO - dynamic message based on clue #
+    // store clues in config.json file clues: { 1: { hint: "this is a hint" } }
+    // get clue number from text body eg. CLUE 1
+    // then get config.clues[1].hint and resp.message(hint);
+    // simple... ?
+    resp.message('Thanks for subscribing!');
+
+    $.header('content-type', 'text/xml')
+
+    // TODO - does this send a response sms automatically or do we need to use client.sendSms ?
+    $.end(resp.toString());
+});
+
+var server = app.listen(server_port, server_ip_address, function () {
+    var host = server.address().address,
+        port = server.address().port;
+
+    console.log( "Listening on http://" + host + ":" + port );
+});
+
 // client.sendSms({
 //     to:'447964209427',
 //     from:'441329801049',
@@ -27,17 +52,3 @@
 //         console.log('Oops! There was an error.');
 //     }
 // });
-
-var server = require('diet'),
-    app = server();
-
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-app.get('/', function ($) {
-    $.end('Hello World!');
-});
-
-app.listen("http://" + server_ip_address + ":" + server_port);
-
-console.log( "Listening on " + server_ip_address + ", server_port " + server_port );
