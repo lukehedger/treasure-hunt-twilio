@@ -11,10 +11,9 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.post('/message', function ($) {
+app.post('/message', function (req, res) {
 
-    // TODO - how can we get text body?
-    console.log($.body, $.query, $.params);
+    console.log(req.body);
 
     var resp = new twilio.TwimlResponse();
 
@@ -25,10 +24,10 @@ app.post('/message', function ($) {
     // simple... ?
     resp.message('Thanks for subscribing!');
 
-    $.header('content-type', 'text/xml')
+    res.set('Content-Type', 'text/xml');
 
     // TODO - does this send a response sms automatically or do we need to use client.sendSms ?
-    $.end(resp.toString());
+    res.send(resp.toString());
 });
 
 var server = app.listen(server_port, server_ip_address, function () {
