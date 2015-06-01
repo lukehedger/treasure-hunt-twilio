@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "diet": "^0.9.3",
+    "express": "^4.12.4",
     "twilio": "^2.2.1"
   },
   "devDependencies": {},
