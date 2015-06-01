@@ -1,11 +1,17 @@
 #!/bin/env node
-var express = require('express');
-var app = express(),
+var express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    multer = require('multer'),
     twilio = require('twilio'),
     client = twilio();
 
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
 
 app.get('/', function (req, res) {
     res.send('Hello Twilio!');

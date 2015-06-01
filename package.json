@@ -24,7 +24,9 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.12.4",
     "express": "^4.12.4",
+    "multer": "^0.1.8",
     "twilio": "^2.2.1"
   },
   "devDependencies": {},
