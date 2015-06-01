@@ -25,14 +25,13 @@
   },
   "dependencies": {
     "express": "^4.12.4",
-    "forever": "^0.14.1",
     "twilio": "^2.2.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],
   "private": true,
   "scripts": {
-    "start": "forever -w start server.js"
+    "start": "node server.js"
   },
   "main": "server.js"
 }
