@@ -7,7 +7,7 @@ module.exports = {
         5: "Homer Simpson would love it here - doh",
         6: "Even Becks could do that sum!",
         7: "Ask Alice",
-        8: "",
+        8: "The huge jukebox in the corner! How do you spell AC/DC?",
         9: "Very expensive soap",
         10: "Good source of iron",
         11: "Eminem World",
