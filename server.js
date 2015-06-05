@@ -34,7 +34,7 @@ app.post('/message', function (req, res) {
     console.log("hint:", hint);
 
     resp.message({
-      body: 'Hint ' + clue + ':', hint,
+      body: 'Hint ' + clue + ':' + hint,
       from: 'Hen Hint'
     });
 
