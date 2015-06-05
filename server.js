@@ -33,7 +33,7 @@ app.post('/message', function (req, res) {
     var hint = config.hints[clue];
     console.log("hint:", hint);
 
-    resp.message('Hint ' + clue + ':' + hint, {
+    resp.message('Hint ' + clue + ': ' + hint, {
       from: 'Hen Hint'
     });
 
